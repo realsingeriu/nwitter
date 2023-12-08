@@ -1,11 +1,13 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Layout from './components/Layout';
-import Home from './routes/Home';
-import Profile from './routes/Profile';
-import Login from './routes/Login';
-import CreateUser from './routes/CreateUser';
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./routes/Home";
+import Profile from "./routes/Profile";
+import Login from "./routes/Login";
+import CreateUser from "./routes/CreateUser";
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+import { useEffect, useState } from "react";
+import LoadingScreen from "./components/Loding-screen";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -21,34 +23,43 @@ const GlobalStyle = createGlobalStyle`
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
-        path: '',
+        path: "",
         element: <Home />,
       },
       {
-        path: '/profile',
+        path: "/profile",
         element: <Profile />,
       },
     ],
   },
   {
-    path: '/login',
+    path: "/login",
     element: <Login />,
   },
   {
-    path: '/create-user',
+    path: "/create-user",
     element: <CreateUser />,
   },
 ]);
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const init = async () => {
+    //파이어베이스 체크
+    setTimeout(() => setIsLoading(false), 2000);
+  };
+  useEffect(() => {
+    init();
+  }, []);
+
   return (
     <>
       <GlobalStyle />
-      <RouterProvider router={router} />
+      {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
     </>
   );
 }
