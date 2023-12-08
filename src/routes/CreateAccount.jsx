@@ -11,6 +11,7 @@ import {
   Switcher,
   Title,
   Wrapper,
+  errorMessageToKorean,
 } from "../components/auth-components";
 
 export default function CreateAccount() {
@@ -53,7 +54,7 @@ export default function CreateAccount() {
       // setError
       if (e instanceof FirebaseError) {
         //console.log(e.code, e.message);
-        setError(e.message);
+        setError(errorMessageToKorean(e));
       }
     } finally {
       setLoading(false);
@@ -92,7 +93,7 @@ export default function CreateAccount() {
           value={isLoading ? "Loading..." : "Create Account"}
         />
       </Form>
-      {error !== "" ? <Error>{error}</Error> : null}
+      {error && <Error>{error}</Error>}
       <Switcher>
         이미 계정이 있습니까? <Link to="/login">로그인 &rarr;</Link>
       </Switcher>

@@ -10,6 +10,7 @@ import {
   Switcher,
   Title,
   Wrapper,
+  errorMessageToKorean,
 } from "../components/auth-components";
 
 export default function Login() {
@@ -39,7 +40,7 @@ export default function Login() {
       navigate("/");
     } catch (e) {
       if (e instanceof FirebaseError) {
-        setError(e.message);
+        setError(errorMessageToKorean(e));
       }
     } finally {
       setLoading(false);
