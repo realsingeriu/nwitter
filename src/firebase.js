@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_ACCESS_NWITTER_API_KEY,
@@ -15,4 +17,8 @@ initializeApp(firebaseConfig);
 // 인증 객체
 const auth = getAuth();
 
-export { auth };
+const storage = getStorage();
+
+const db = getFirestore();
+
+export { auth, db, storage };
