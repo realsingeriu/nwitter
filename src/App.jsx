@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import LoadingScreen from "./components/Loding-screen";
 import { auth } from "./firebase";
 import CreateAccount from "./routes/CreateAccount";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -32,7 +33,11 @@ const Wrapper = styled.div`
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "",
