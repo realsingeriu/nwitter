@@ -13,6 +13,7 @@ import {
   Wrapper,
   errorMessageToKorean,
 } from "../components/auth-components";
+import GithubButton from "../components/GithubButton";
 
 export default function CreateAccount() {
   const navigate = useNavigate(); // 네비객체
@@ -97,6 +98,7 @@ export default function CreateAccount() {
       <Switcher>
         이미 계정이 있습니까? <Link to="/login">로그인 &rarr;</Link>
       </Switcher>
+      <GithubButton />
     </Wrapper>
   );
 }

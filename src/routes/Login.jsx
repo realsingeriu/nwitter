@@ -12,6 +12,7 @@ import {
   Wrapper,
   errorMessageToKorean,
 } from "../components/auth-components";
+import GithubButton from "../components/GithubButton";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ export default function Login() {
       //파이어베이스 로그인
       navigate("/");
     } catch (e) {
+      console.log(e);
       if (e instanceof FirebaseError) {
         setError(errorMessageToKorean(e));
       }
@@ -72,6 +74,7 @@ export default function Login() {
       <Switcher>
         계정이 없으신가요? <Link to="/create-account">가입하기 &rarr;</Link>
       </Switcher>
+      <GithubButton />
     </Wrapper>
   );
 }
