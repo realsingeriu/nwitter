@@ -68,7 +68,7 @@ export default function Login() {
         />
         <Input type="submit" value={isLoading ? "Loading..." : "Log in"} />
       </Form>
-      {error !== "" ? <Error>{error}</Error> : null}
+      {error && <Error>{error}</Error>}
       <Switcher>
         계정이 없으신가요? <Link to="/create-account">가입하기 &rarr;</Link>
       </Switcher>
