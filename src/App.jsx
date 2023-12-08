@@ -8,6 +8,7 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { useEffect, useState } from "react";
 import LoadingScreen from "./components/Loding-screen";
+import { auth } from "./firebase";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -50,7 +51,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const init = async () => {
     //파이어베이스 체크
-    setTimeout(() => setIsLoading(false), 2000);
+    await auth.authStateReady();
+    setIsLoading(false);
   };
   useEffect(() => {
     init();
