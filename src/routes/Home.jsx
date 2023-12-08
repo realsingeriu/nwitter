@@ -1,11 +1,12 @@
 import React from "react";
 import { auth } from "../firebase";
+import PostTweetForm from "../components/PostTweetForm";
 
 const Home = () => {
   const logOut = () => {
     auth.signOut();
   };
-  return <h1>Home</h1>;
+  return <PostTweetForm />;
 };
 
 export default Home;

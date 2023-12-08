@@ -60,7 +60,7 @@ const SubmitBtn = styled.input`
 export default function PostTweetForm() {
   const [isLoading, setLoading] = useState(false);
   const [tweet, setTweet] = useState("");
-  const [file, setFile] = (useState < File) | (null > null);
+  const [file, setFile] = useState(null);
   const onChange = (e) => {
     setTweet(e.target.value);
   };
@@ -77,8 +77,9 @@ export default function PostTweetForm() {
         maxLength={180}
         onChange={onChange}
         value={tweet}
-        placeholder="What is happening?!"
+        placeholder="무슨 일이 일어나고 있나요?"
       />
+      {/* 파일이 저장된 상태면 photo added 표시가 뜬다 */}
       <AttachFileButton htmlFor="file">
         {file ? "Photo added ✅" : "Add photo"}
       </AttachFileButton>
