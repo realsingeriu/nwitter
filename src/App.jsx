@@ -3,12 +3,13 @@ import Layout from "./components/Layout";
 import Home from "./routes/Home";
 import Profile from "./routes/Profile";
 import Login from "./routes/Login";
-import CreateUser from "./routes/CreateAccount";
+
 import styled, { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { useEffect, useState } from "react";
 import LoadingScreen from "./components/Loding-screen";
 import { auth } from "./firebase";
+import CreateAccount from "./routes/CreateAccount";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -48,8 +49,8 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/create-user",
-    element: <CreateUser />,
+    path: "/create-account",
+    element: <CreateAccount />,
   },
 ]);
 
