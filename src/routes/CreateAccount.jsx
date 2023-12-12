@@ -1,9 +1,8 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { auth } from "../firebase";
-import { FirebaseError } from "firebase/app";
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
+import { FirebaseError } from 'firebase/app';
 import {
   Error,
   Form,
@@ -12,47 +11,39 @@ import {
   Title,
   Wrapper,
   errorMessageToKorean,
-} from "../components/auth-components";
-import GithubButton from "../components/GithubButton";
+} from '../components/auth-components';
+import GithubButton from '../components/GithubButton';
 
 export default function CreateAccount() {
-  const navigate = useNavigate(); // 네비객체
+  const navigate = useNavigate(); //네비객체
   const [isLoading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const onChange = (e) => {
-    const {
-      target: { name, value },
-    } = e;
-    if (name === "name") {
+    const { name, value } = e.target;
+    if (name === 'name') {
       setName(value);
-    } else if (name === "email") {
+    } else if (name === 'email') {
       setEmail(value);
-    } else if (name === "password") {
+    } else if (name === 'password') {
       setPassword(value);
     }
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // 에러메세지 초기화
-    if (isLoading || name === "" || email === "" || password === "") return;
+    setError(null); //에러 초기화
+    if (isLoading || name === '' || email === '' || password === '') return;
     try {
       setLoading(true);
-      const credentials = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log(credentials.user);
+      const credentials = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(credentials.user, {
         displayName: name,
       });
       console.log(credentials.user);
-      navigate("/");
+      navigate('/');
     } catch (e) {
-      // setError
       if (e instanceof FirebaseError) {
         //console.log(e.code, e.message);
         setError(errorMessageToKorean(e));
@@ -63,7 +54,7 @@ export default function CreateAccount() {
   };
   return (
     <Wrapper>
-      <Title>Log into 𝕏</Title>
+      <Title>가입하기 𝕏</Title>
       <Form onSubmit={onSubmit}>
         <Input
           onChange={onChange}
@@ -89,10 +80,7 @@ export default function CreateAccount() {
           type="password"
           required
         />
-        <Input
-          type="submit"
-          value={isLoading ? "Loading..." : "Create Account"}
-        />
+        <Input type="submit" value={isLoading ? 'Loading...' : 'Create Account'} />
       </Form>
       {error && <Error>{error}</Error>}
       <Switcher>

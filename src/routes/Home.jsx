@@ -1,12 +1,13 @@
-import React from "react";
-import { auth } from "../firebase";
-import PostTweetForm from "../components/PostTweetForm";
+import PostTweetForm from '../components/PostTweetForm';
+import Timeline from '../components/Timeline';
 
 const Home = () => {
-  const logOut = () => {
-    auth.signOut();
-  };
-  return <PostTweetForm />;
+  return (
+    <>
+      <PostTweetForm />;
+      <Timeline />
+    </>
+  );
 };
 
 export default Home;

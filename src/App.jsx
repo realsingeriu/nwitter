@@ -1,16 +1,15 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./routes/Home";
-import Profile from "./routes/Profile";
-import Login from "./routes/Login";
-
-import styled, { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
-import { useEffect, useState } from "react";
-import LoadingScreen from "./components/Loding-screen";
-import { auth } from "./firebase";
-import CreateAccount from "./routes/CreateAccount";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './routes/Home';
+import Profile from './routes/Profile';
+import Login from './routes/Login';
+import CreateAccount from './routes/CreateAccount';
+import styled, { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import { useEffect, useState } from 'react';
+import LoadingScreen from './components/Loading-screen';
+import { auth } from './firebase';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -32,7 +31,7 @@ const Wrapper = styled.div`
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: (
       <ProtectedRoute>
         <Layout />
@@ -40,41 +39,40 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "",
+        path: '',
         element: <Home />,
       },
       {
-        path: "/profile",
+        path: '/profile',
         element: <Profile />,
       },
     ],
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/create-account",
+    path: '/create-account',
     element: <CreateAccount />,
   },
 ]);
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoding, setIsLoding] = useState(true);
   const init = async () => {
     //파이어베이스 체크
     await auth.authStateReady();
-    setIsLoading(false);
+    setIsLoding(false);
   };
   useEffect(() => {
     init();
   }, []);
-
   return (
     <>
       <Wrapper>
         <GlobalStyle />
-        {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
+        {isLoding ? <LoadingScreen /> : <RouterProvider router={router} />}
       </Wrapper>
     </>
   );

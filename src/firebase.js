@@ -5,20 +5,18 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_ACCESS_NWITTER_API_KEY,
-  authDomain: "nwitter-bae.firebaseapp.com",
-  projectId: "nwitter-bae",
-  storageBucket: "nwitter-bae.appspot.com",
-  messagingSenderId: "740194171531",
-  appId: "1:740194171531:web:574f720a3d3c216d91b28e",
+  authDomain: "nwitter-drv98.firebaseapp.com",
+  projectId: "nwitter-drv98",
+  storageBucket: "nwitter-drv98.appspot.com",
+  messagingSenderId: "97502061943",
+  appId: "1:97502061943:web:7cb2ec968760b4e7a3ad72",
 };
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
-// 인증 객체
+// 인증객체
 const auth = getAuth();
-
-const storage = getStorage();
-
 const db = getFirestore();
+const storage = getStorage();
 
 export { auth, db, storage };

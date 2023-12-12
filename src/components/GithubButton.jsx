@@ -1,7 +1,7 @@
-import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
-import { styled } from "styled-components";
-import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+import { styled } from 'styled-components';
+import { auth } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Button = styled.span`
   margin-top: 50px;
@@ -31,7 +31,7 @@ export default function GithubButton() {
       const provider = new GithubAuthProvider();
       //팝업으로 깃허브인증받기
       await signInWithPopup(auth, provider);
-      navigate("/");
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
